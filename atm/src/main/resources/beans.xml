@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- Account -->
+    <bean id="account" class="kz.iitu.atm.Account">
+        <constructor-arg name="accountNumber" value="123456"></constructor-arg>
+        <constructor-arg name="balance" value="50000"></constructor-arg>
+    </bean>
+
+    <bean id="account2" class="kz.iitu.atm.Account">
+        <constructor-arg name="accountNumber" value="987654"></constructor-arg>
+        <constructor-arg name="balance" value="25000"></constructor-arg>
+    </bean>
+
+    <!-- Customer -->
+    <bean id="customer" class="kz.iitu.atm.Customer">
+        <constructor-arg value="Madiyar"></constructor-arg>
+        <constructor-arg value="Rsaliyev"></constructor-arg>
+        <constructor-arg ref="account"></constructor-arg>
+    </bean>
+
+    <bean id="customer" class="kz.iitu.atm.Customer">
+        <constructor-arg value="Sherkhan"></constructor-arg>
+        <constructor-arg value="Askhanbek"></constructor-arg>
+        <constructor-arg ref="account2"></constructor-arg>
+    </bean>
+
+    <bean id="bank" class="kz.iitu.atm.Bank">
+        <property name="accounts">
+            <list>
+                <ref bean="account"></ref>
+                <ref bean="account2"></ref>
+            </list>
+        </property>
+    </bean>
+
+
+
+</beans>
